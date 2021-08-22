@@ -4,7 +4,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 0 25px 20px 15px;
-  background-color: var(--bg-light);
+  background-color: var(--bg-blue);
   margin: 3%;
   width: 90%;
   max-width: 95%;
@@ -18,7 +18,7 @@
 .hr-table {
   height: 1px;
   width: 100%;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-grey);
   border: none;
 }
 .table-show-search-wrapper {
@@ -36,7 +36,7 @@
   font-size: var(--font-size-lg);
   border: none;
   border-radius: 3px;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-grey);
   color: var(--text-color-secondary);
   width: 70px;
   padding: 1px;
@@ -53,7 +53,7 @@
   font-size: var(--font-size-lg);
 }
 .table-search-bar input {
-  background-color: var(--bg-dark);
+  background-color: var(--bg-grey);
   color: var(--text-color-secondary);
   border: none;
   border-radius: 3px;
@@ -71,7 +71,7 @@ table {
   margin: 5px;
   padding: 1%;
   font-size: var(--font-size-md);
-  background-color: var(--bg-dark);
+  background-color: var(--bg-grey);
   overflow-x: scroll;
   color: var(--text-color-dark);
 }
@@ -85,7 +85,7 @@ table th {
 }
 table td {
   /* border-bottom: solid 1px var(--text-color-secondary); */
-  background-color: var(--bg-dark);
+  background-color: var(--bg-grey);
   min-width: 100px;
   padding: 2px;
 }

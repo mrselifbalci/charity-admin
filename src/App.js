@@ -14,16 +14,39 @@ import Sliders from './components/Sliders/Sliders';
 import Users from './components/Users/Users';
 import EmailList from './components/EmailList/EmailList';
 import Messages from './components/Messages/Messages';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard'; 
+import Signin from './components/Auth/Signin';
+import Signout from './components/Auth/Signout';
 
 
 function App() {
   const [apiBaseUrl,setApiBaseUrl]=useState('https://charity-backend-july.herokuapp.com')
+  const [isLoggedIn,setIsLoggedIn]=useState(false)
+  const [url,setUrl]=useState('')
+  const [token,setToken]=useState('')
+
+  useEffect(() => {
+        setToken(JSON.parse(sessionStorage.getItem('token')))
+        setUrl(JSON.parse(sessionStorage.getItem('url')))
+    }, [])
+
   return (
     <div className="App">
-       <Header/>
+     <Router>
+            <Route
+	        exact path="/"
+                render={() => <Signin apiBaseUrl={apiBaseUrl} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} token={token}/>}
+	        />
+    <Route
+		exact path="/signout"
+		render={() => <Signout apiBaseUrl={apiBaseUrl} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}  token={token}/>}
+		/>
+        {
+              isLoggedIn || token ?  
+              <div>
+                      <Header url={url} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} token={token} />
        <Footer/>
-       <Router>
+       
          <Switch>
          <div className="content-wrapper">
        
@@ -36,7 +59,7 @@ function App() {
                     render={() => <News apiBaseUrl={apiBaseUrl} />}
                     />
             <Route
-                    exact path="/addnews"
+                    exact path="/addnews" 
                     render={() => <AddNews apiBaseUrl={apiBaseUrl} />}
                     />
             <Route
@@ -61,7 +84,14 @@ function App() {
                     />
          </div>
          </Switch>
-       </Router> 
+       
+              </div>
+              
+              
+              : null
+
+        }
+     </Router>   
     </div>
   );
 }

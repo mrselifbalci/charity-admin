@@ -7,8 +7,8 @@ import { BsQuestionSquare,BsInfoSquare,BsFillPlusSquareFill } from "react-icons/
 import {BsFillEyeFill,BsFillHouseDoorFill,BsFillStarFill,BsChatFill,BsFillPeopleFill,BsCardList,BsFilm,BsChevronRight,BsEnvelope } from "react-icons/bs";
 import {IoNotificationsOutline} from 'react-icons/io5';
 import '../../styles/header.css'
-
-export default function Header() {
+ 
+export default function Header({isLoggedIn,setIsLoggedIn,apiBaseUrl,url,token,userInfo}) {
 
     const history = useHistory()
  
@@ -59,6 +59,20 @@ export default function Header() {
       }
     }
 
+    const logout = (e)=>{
+      e.preventDefault()
+      setIsLoggedIn(false)
+      sessionStorage.removeItem('token')
+      sessionStorage.removeItem('userinfo')
+      sessionStorage.removeItem('url')
+      history.push('/signout')
+      window.location.reload()
+    }
+    
+    useEffect(() => {
+      setAdminInfo(JSON.parse(sessionStorage.getItem('userinfo')))
+      
+    }, [])
 
     return (
         <div className="header-container"> 
@@ -73,10 +87,10 @@ export default function Header() {
             <div className="header-profile-container">
                 <IoNotificationsOutline className="notification-icon" />
                 <BsEnvelope className="envelope-icon"/>
-                {/* <img className="header-profile-img" src={url} alt="pic" onClick={toggleProfileClass}/> */}
+                <img className="header-profile-img" src={url} alt="pic" onClick={toggleProfileClass}/>
                 <div className={profileInfoClass ? "profile-info-container-open" : "profile-info-container-closed"}>
-                    {/* <div>Welcome {adminInfo.firstname}</div> */}
-                    {/* <div className="logout-text"><p onClick={logout}>Logout</p></div> */}
+                    <div>Welcome {adminInfo.firstname}</div>
+                    <div className="logout-text"><p onClick={logout}>Logout</p></div>
                 </div>
             </div>
           </div>

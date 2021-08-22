@@ -5,7 +5,7 @@
   width: 100%;
   height: var(--footer-height);
   color: var(--text-color-primary);
-  background-color: var(--bg-medium);
+  background-color: var(--bg-blue);
   font-size: var(--font-size-md);
   z-index: 1;
 }
