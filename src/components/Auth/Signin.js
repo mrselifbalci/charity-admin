@@ -42,7 +42,7 @@ export default function Signin({isLoggedIn,setIsLoggedIn,apiBaseUrl,setUrl,token
                 : <form onSubmit={handleSubmit} className="signin-form">
                         <div className="signin-form-title">SIGN IN</div>
                         <div className="signin-form-email">
-                            <input value={email}  onChange={(e)=>setEmail(e.target.value)} placeholder="Email"/>
+                            <input value={email}  onChange={(e)=>setEmail(e.target.value)} placeholder="Email" type="email"/>
                         </div>
                         <div className="signin-form-password">
                             <input value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password" type="password"/>
