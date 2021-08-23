@@ -9,7 +9,7 @@ export default function Signin({isLoggedIn,setIsLoggedIn,apiBaseUrl,setUrl,token
  const history = useHistory()
 
  
- const handleSubmit= async (e)=>{
+ const handleSubmit= async (e)=>{ 
      e.preventDefault()
      await axios.post(`${apiBaseUrl}/users/signin`,{
         email,password})
@@ -17,7 +17,7 @@ export default function Signin({isLoggedIn,setIsLoggedIn,apiBaseUrl,setUrl,token
         if(res.data.status && res.data.role==="admin"){
             sessionStorage.setItem('token', JSON.stringify(res.data.token))
             sessionStorage.setItem('userinfo', JSON.stringify(res.data))
-            sessionStorage.setItem('url', JSON.stringify(res.data.mediaId.url))
+            sessionStorage.setItem('url', JSON.stringify(res.data.mediaId.url)) 
             setIsLoggedIn(true)
             console.log(res.data)
             history.push('/dashboard')  
@@ -31,7 +31,6 @@ export default function Signin({isLoggedIn,setIsLoggedIn,apiBaseUrl,setUrl,token
     .catch(err=>console.log(err))
  }
 
- 
 
     
     return (
