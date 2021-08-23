@@ -26,8 +26,8 @@ function App() {
   const [token,setToken]=useState('')
 
   useEffect(() => {
-        setToken(JSON.parse(sessionStorage.getItem('token')))
-        setUrl(JSON.parse(sessionStorage.getItem('url')))
+        setToken(JSON.parse(localStorage.getItem('token')))
+        setUrl(JSON.parse(localStorage.getItem('url')))
     }, [])
 
   return (
