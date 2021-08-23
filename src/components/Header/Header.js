@@ -62,15 +62,15 @@ export default function Header({isLoggedIn,setIsLoggedIn,apiBaseUrl,url,token,us
     const logout = (e)=>{
       e.preventDefault()
       setIsLoggedIn(false)
-      sessionStorage.removeItem('token')
-      sessionStorage.removeItem('userinfo')
-      sessionStorage.removeItem('url')
+      localStorage.removeItem('token')
+      localStorage.removeItem('userinfo')
+      localStorage.removeItem('url')
       history.push('/signout')
       window.location.reload()
     }
     
     useEffect(() => {
-      setAdminInfo(JSON.parse(sessionStorage.getItem('userinfo')))
+      setAdminInfo(JSON.parse(localStorage.getItem('userinfo')))
       
     }, [])
 
@@ -87,7 +87,7 @@ export default function Header({isLoggedIn,setIsLoggedIn,apiBaseUrl,url,token,us
             <div className="header-profile-container">
                 <IoNotificationsOutline className="notification-icon" />
                 <BsEnvelope className="envelope-icon"/>
-                <img className="header-profile-img" src={url} alt="pic" onClick={toggleProfileClass}/>
+                <img className="header-profile-img" src={typeof adminInfo === 'object' ? adminInfo.mediaId.url : null} alt="pic" onClick={toggleProfileClass}/>
                 <div className={profileInfoClass ? "profile-info-container-open" : "profile-info-container-closed"}>
                     <div>Welcome {adminInfo.firstname}</div>
                     <div className="logout-text"><p onClick={logout}>Logout</p></div>

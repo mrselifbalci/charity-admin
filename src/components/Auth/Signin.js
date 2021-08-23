@@ -15,9 +15,9 @@ export default function Signin({isLoggedIn,setIsLoggedIn,apiBaseUrl,setUrl,token
         email,password})
     .then (res=>{
         if(res.data.status && res.data.role==="admin"){
-            sessionStorage.setItem('token', JSON.stringify(res.data.token))
-            sessionStorage.setItem('userinfo', JSON.stringify(res.data))
-            sessionStorage.setItem('url', JSON.stringify(res.data.mediaId.url))
+            localStorage.setItem('token', JSON.stringify(res.data.token))
+            localStorage.setItem('userinfo', JSON.stringify(res.data))
+            localStorage.setItem('url', JSON.stringify(res.data.mediaId.url))
             setIsLoggedIn(true)
             console.log(res.data)
             history.push('/dashboard')  
