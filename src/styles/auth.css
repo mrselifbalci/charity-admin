@@ -35,10 +35,10 @@
   width: 75%;
   height: 40px;
   margin-top: 5%;
-  background-color: var(--bg-blue);
+  background-color: var(--bg-grey);
   border: none;
   border-radius: 5px;
-  color: var(--text-color-primary);
+  color: black;
   font-size: var(--font-size-md);
 }
 
