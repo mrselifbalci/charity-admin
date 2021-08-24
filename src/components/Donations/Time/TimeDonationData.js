@@ -3,7 +3,10 @@ export const COLUMNS = [
 		Header: 'Name',
 		accessor: 'userId',
 		Cell: ({ row }) => {
-			return row.original.userId.firstname + ' ' + row.original.userId.lastname;
+			return (
+				row.original.userId &&
+				row.original.userId.firstname + ' ' + row.original.userId.lastname
+			);
 		},
 	},
 
