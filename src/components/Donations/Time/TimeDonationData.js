@@ -23,10 +23,24 @@ export const COLUMNS = [
 	{
 		Header: 'Interested In',
 		accessor: 'interested_in',
+		Cell: ({ row }) => {
+			return (
+				<p>
+					{row.original.interested_in &&
+						row.original.interested_in.slice(0, 30)}
+					...
+				</p>
+			);
+		},
 	},
 
 	{
 		Header: 'Comments',
 		accessor: 'comments',
+		Cell: ({ row }) => {
+			return (
+				<p>{row.original.comments && row.original.comments.slice(0, 30)}...</p>
+			);
+		},
 	},
 ];
