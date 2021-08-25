@@ -57,7 +57,6 @@ const GoodDonation = ({ apiBaseUrl }) => {
 			.get(`${apiBaseUrl}/donations/type/good`)
 			.then((res) => {
 				setData(res.data.data);
-				console.log(data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -98,8 +97,6 @@ const GoodDonation = ({ apiBaseUrl }) => {
 	);
 
 	const { globalFilter, pageIndex, pageSize } = state;
-
-	console.log(data);
 
 	return (
 		<div className='news-component-wrapper'>
@@ -144,23 +141,22 @@ const GoodDonation = ({ apiBaseUrl }) => {
 									<p>{email}</p>
 								</div>
 								<div className='modal-form-item'>
-									<h2>Address</h2>
-									<p>{address}</p>
+									<h2>Post Code</h2>
+									<p>{postcode}</p>
 								</div>
 							</div>
 							<div className='modal-form-item'>
-								<h2>Post Code</h2>
-								<p>{postcode}</p>
+								<h2>Address</h2>
+								<p>{address}</p>
 							</div>
-							<div className='modal-group-container'>
-								<div className='modal-form-item'>
-									<h2>Type of Goods</h2>
-									<p>{typeOfGoods}</p>
-								</div>
-								<div className='modal-form-item'>
-									<h2>Instructions to the Driver</h2>
-									<p>{instructions}</p>
-								</div>
+							<div className='modal-form-item'>
+								<h2>Type of Goods</h2>
+								<p>{typeOfGoods}</p>
+							</div>
+
+							<div className='modal-form-item'>
+								<h2>Instructions to the Driver</h2>
+								<p>{instructions}</p>
 							</div>
 						</form>
 					</div>
@@ -229,7 +225,6 @@ const GoodDonation = ({ apiBaseUrl }) => {
 										);
 									})}
 									<td>{row.original.userId.email}</td>
-									{console.log(row.original.userId.email)}
 									<td className='table-action-icons-wrapper'>
 										<BsFillEyeFill
 											className='table-view-icon action-icons'
