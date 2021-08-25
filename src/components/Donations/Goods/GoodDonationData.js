@@ -34,10 +34,17 @@ export const COLUMNS = [
 		accessor: 'instructions',
 		Cell: ({ row }) => {
 			return (
-				<span>
-					{row.original.instructions && row.original.instructions.slice(0, 30)}
-					...
-				</span>
+				<>
+					{row.original.instructions.length !== 0 ? (
+						<span>
+							{row.original.instructions &&
+								row.original.instructions.slice(0, 30)}
+							...
+						</span>
+					) : (
+						<span>-</span>
+					)}
+				</>
 			);
 		},
 	},

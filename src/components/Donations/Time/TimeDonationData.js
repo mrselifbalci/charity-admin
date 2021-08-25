@@ -29,11 +29,17 @@ export const COLUMNS = [
 		accessor: 'interested_in',
 		Cell: ({ row }) => {
 			return (
-				<span>
-					{row.original.interested_in &&
-						row.original.interested_in.slice(0, 30)}
-					...
-				</span>
+				<>
+					{row.original.interested_in.length !== 0 ? (
+						<span>
+							{row.original.interested_in &&
+								row.original.interested_in.slice(0, 30)}
+							...
+						</span>
+					) : (
+						<span>-</span>
+					)}
+				</>
 			);
 		},
 	},
@@ -43,9 +49,16 @@ export const COLUMNS = [
 		accessor: 'comments',
 		Cell: ({ row }) => {
 			return (
-				<span>
-					{row.original.comments && row.original.comments.slice(0, 30)}...
-				</span>
+				<>
+					{row.original.comments.length !== 0 ? (
+						<span>
+							{row.original.comments && row.original.comments.slice(0, 30)}
+							...
+						</span>
+					) : (
+						<span>-</span>
+					)}
+				</>
 			);
 		},
 	},
