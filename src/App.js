@@ -117,7 +117,7 @@ function App() {
 								/>
 								<Route
 									exact
-									path='/gift-card-donation'
+									path='/giftcard-donations'
 									render={() => (
 										<GiftCards apiBaseUrl={apiBaseUrl} />
 									)}

@@ -3,7 +3,8 @@ export const COLUMNS = [
 
     {
         Header:"Name",
-        accessor:'firstname'
+        accessor:'firstname',
+        Cell:({row}) => <p>{row.original.firstname + ' ' + row.original.lastname}</p>
     },
     {
         Header:"TYPE",
