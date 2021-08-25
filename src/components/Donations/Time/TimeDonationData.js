@@ -4,8 +4,12 @@ export const COLUMNS = [
 		accessor: 'userId',
 		Cell: ({ row }) => {
 			return (
-				row.original.userId &&
-				row.original.userId.firstname + ' ' + row.original.userId.lastname
+				<span>
+					{row.original.userId &&
+						row.original.userId.firstname +
+							' ' +
+							row.original.userId.lastname}
+				</span>
 			);
 		},
 	},
@@ -25,11 +29,11 @@ export const COLUMNS = [
 		accessor: 'interested_in',
 		Cell: ({ row }) => {
 			return (
-				<p>
+				<span>
 					{row.original.interested_in &&
 						row.original.interested_in.slice(0, 30)}
 					...
-				</p>
+				</span>
 			);
 		},
 	},
@@ -39,7 +43,9 @@ export const COLUMNS = [
 		accessor: 'comments',
 		Cell: ({ row }) => {
 			return (
-				<p>{row.original.comments && row.original.comments.slice(0, 30)}...</p>
+				<span>
+					{row.original.comments && row.original.comments.slice(0, 30)}...
+				</span>
 			);
 		},
 	},
