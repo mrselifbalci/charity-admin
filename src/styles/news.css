@@ -9,6 +9,7 @@
   color: var(--button-red);
   text-align: right;
   font-size: var(--title-font-size);
+  cursor: pointer;
 }
 .modal-form {
   display: flex;

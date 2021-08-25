@@ -17,6 +17,7 @@ import Messages from './components/Messages/Messages';
 import Dashboard from './components/Dashboard/Dashboard'; 
 import Signin from './components/Auth/Signin';
 import Signout from './components/Auth/Signout';
+import GiftCards from './components/Donations/GiftCard/GiftCards';
 
 
 function App() {
@@ -82,6 +83,7 @@ function App() {
                     exact path="/messages"
                     render={() => <Messages apiBaseUrl={apiBaseUrl} />}
                     />
+            <Route exact path="/giftcard-donations" render={() => <GiftCards apiBaseUrl={apiBaseUrl}/>} />
          </div>
          </Switch>
        
