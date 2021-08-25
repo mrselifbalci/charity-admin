@@ -5,60 +5,36 @@ import { BsArrowUpDown } from 'react-icons/bs';
 import { BsFillEyeFill, BsPencilSquare, BsFillTrashFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
-import { COLUMNS } from './NewsTableData';
-import '../../styles/table.css';
-import '../../styles/news.css';
+import { COLUMNS } from './TimeDonationData';
+import '../../../styles/table.css';
+import './TimeDonation.css';
 
 Modal.setAppElement('#root');
 
-export default function News({ apiBaseUrl }) {
+const TimeDonation = ({ apiBaseUrl }) => {
 	const [data, setData] = useState([]);
 	const [modalIsOpen, setModalIsOpen] = useState(false);
-	const [modalPost, setModalPost] = useState('');
-	const [title, setTitle] = useState('');
-	const [summary, setSummary] = useState('');
-	const [content, setContent] = useState('');
-	const [type, setType] = useState('');
-	const [authorName, setAuthorName] = useState('');
-	const [quote, setQuote] = useState('');
-	const [bannerImage, setBannerImage] = useState('');
-	const [authorImage, setAuthorImage] = useState('');
+	const [firstname, setFirstname] = useState('');
+	const [lastname, setLastname] = useState('');
+	const [email, setEmail] = useState('');
+	const [phone, setPhone] = useState('');
+	const [city, setCity] = useState('');
+	const [interestedIn, setInterestedIn] = useState('');
+	const [comment, setComment] = useState('');
+	const [donation, setDonation] = useState('');
 
-	const handleSubmit = (newsId) => {
-		const updatedNews = {
-			title,
-			summary,
-			content,
-			type,
-			authorName,
-			quote,
-			bannerImage,
-			authorImage,
-		};
-		axios
-			.put(`${apiBaseUrl}/news/${newsId}`, updatedNews)
-			.then((res) => {
-				window.location.reload();
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
-
-	const editNews = async (newsId) => {
+	const viewTimeDonation = async (donationId) => {
 		await axios
-			.get(`${apiBaseUrl}/news/${newsId}`)
+			.get(`${apiBaseUrl}/donations/${donationId}`)
 			.then((res) => {
-				console.log(res.data.data.quoteAuthorMedia);
-				setModalPost(res.data);
-				setTitle(res.data.data.title);
-				setType(res.data.data.type);
-				setAuthorName(res.data.data.quoteAuthor);
-				setQuote(res.data.data.quote);
-				setSummary(res.data.data.summary);
-				setContent(res.data.data.content);
-				setBannerImage(res.data.data.mediaId);
-				setAuthorImage(res.data.data.quoteAuthorMedia);
+				setDonation(res.data);
+				setFirstname(res.data.data.userId.firstname);
+				setLastname(res.data.data.userId.lastname);
+				setEmail(res.data.data.userId.email);
+				setPhone(res.data.data.phone);
+				setCity(res.data.data.city);
+				setInterestedIn(res.data.data.interested_in);
+				setComment(res.data.data.comments);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -66,9 +42,9 @@ export default function News({ apiBaseUrl }) {
 		setModalIsOpen(true);
 	};
 
-	const deleteNews = (newsId) => {
+	const deleteTimeDonation = (donationId) => {
 		axios
-			.delete(`${apiBaseUrl}/news/${newsId}`)
+			.delete(`${apiBaseUrl}/donations/${donationId}`)
 			.then((res) => {
 				window.location.reload();
 			})
@@ -79,21 +55,21 @@ export default function News({ apiBaseUrl }) {
 
 	useEffect(() => {
 		axios
-			.get(`${apiBaseUrl}/news`)
+			.get(`${apiBaseUrl}/donations/type/time`)
 			.then((res) => {
 				setData(res.data.data);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-	}, []);
+	}, [apiBaseUrl]);
 
 	const columns = useMemo(() => COLUMNS, []);
-	const news = useMemo(() => data, []);
+	const timeDonations = useMemo(() => data, []);
 
 	useTable({
 		columns: columns,
-		data: news,
+		data: timeDonations,
 	});
 
 	const {
@@ -137,8 +113,9 @@ export default function News({ apiBaseUrl }) {
 							height: 'auto',
 							backgroundColor: '#347ca5',
 							border: 'none',
-							width: '90%',
+							width: '70%',
 							padding: '0 2% 2% 2%',
+							margin: '20px auto',
 						},
 					}}>
 					<div className='modal-container'>
@@ -147,102 +124,44 @@ export default function News({ apiBaseUrl }) {
 							onClick={() => setModalIsOpen(false)}>
 							X
 						</p>
-						<form
-							onSubmit={(e) => {
-								e.preventDefault();
-								handleSubmit(modalPost._id);
-							}}
-							className='modal-form'>
-							<div className='modal-form-column-one'>
+						<form className='modal-form'>
+							<div className='modal-form-item'>
+								<h2>Name</h2>
+								<p>
+									{firstname} {lastname}
+								</p>
+							</div>
+
+							<div className='modal-group-container'>
 								<div className='modal-form-item'>
-									<label>Title</label>
-									<input
-										value={title}
-										onChange={(e) => {
-											setTitle(e.target.value);
-										}}
-									/>
+									<h2>Phone</h2>
+									<p>{phone}</p>
 								</div>
 								<div className='modal-form-item'>
-									<label>Summary</label>
-									<textarea
-										value={summary}
-										onChange={(e) => {
-											setSummary(e.target.value);
-										}}
-									/>
-								</div>
-								<div className='modal-group-container'>
-									<div className='modal-form-item'>
-										<label>Type</label>
-										<select
-											value={type}
-											onChange={(e) => {
-												setType(e.target.value);
-											}}>
-											<option value='news'>News</option>
-											<option value='campaign'>Campaign</option>
-										</select>
-									</div>
-									<div className='modal-form-item'>
-										<label>Author Name</label>
-										<input
-											value={authorName}
-											onChange={(e) => {
-												setAuthorName(e.target.value);
-											}}
-										/>
-									</div>
+									<h2>Email</h2>
+									<p>{email}</p>
 								</div>
 								<div className='modal-form-item'>
-									<label>Quote</label>
-									<textarea
-										value={quote}
-										onChange={(e) => {
-											setQuote(e.target.value);
-										}}
-									/>
-								</div>
-								<div className='modal-group-container'>
-									<div className='modal-form-item'>
-										<label>Banner Image</label>
-										<img src={bannerImage.url} alt='news' />
-										<input
-											type='file'
-											onChange={(e) => {
-												setBannerImage(e.target.files[0]);
-											}}
-										/>
-									</div>
-									<div className='modal-form-item modal-image-container'>
-										<label>Author Image</label>
-										<img src={authorImage.url} alt='news-author' />
-										<input
-											type='file'
-											onChange={(e) => {
-												setAuthorImage(e.target.files[0]);
-											}}
-										/>
-									</div>
-								</div>
-								<div className='news-update-button-container'>
-									<button
-										className='news-update-button submit-button'
-										type='submit'>
-										Submit
-									</button>
+									<h2>City</h2>
+									<p>{city}</p>
 								</div>
 							</div>
-							<div className='modal-form-column-two'>
-								<label>Content</label>
-								<textarea value={content} />
+							<div className='modal-form-item'>
+								<h2>Interested In</h2>
+								<p>{interestedIn}</p>
+							</div>
+							<div className='modal-group-container'>
+								<div className='modal-form-item'>
+									<h2>Comment</h2>
+									<p>{comment}</p>
+								</div>
 							</div>
 						</form>
 					</div>
 				</Modal>
 			</div>
 			<div className='table-container'>
-				<h1 className='table-title'>News&Campaigns List</h1>
+				<h1 className='table-title'>Time Donations</h1>
 				<hr className='hr-table' />
 				<div className='table-show-search-wrapper'>
 					<div className='table-show-bar'>
@@ -272,7 +191,6 @@ export default function News({ apiBaseUrl }) {
 					<thead>
 						{headerGroups.map((headerGroup) => (
 							<tr {...headerGroup.getHeaderGroupProps()}>
-								{/* <th></th> */}
 								{headerGroup.headers.map((column) => (
 									<th
 										{...column.getHeaderProps(
@@ -286,6 +204,7 @@ export default function News({ apiBaseUrl }) {
 										</div>
 									</th>
 								))}
+								<th>Email</th>
 								<th>ACTION</th>
 							</tr>
 						))}
@@ -303,25 +222,20 @@ export default function News({ apiBaseUrl }) {
 											</td>
 										);
 									})}
+									<td>{row.original.userId.email}</td>
 									<td className='table-action-icons-wrapper'>
-										<Link to={`/newsdetails/${row.original._id}`}>
-											<BsFillEyeFill
-												to={`/newsdetails/${row.original._id}`}
-												className='table-view-icon action-icons'
-											/>
-											&nbsp;
-										</Link>
-										<BsPencilSquare
-											className='table-edit-icon action-icons'
+										<BsFillEyeFill
+											to={`/newsdetails/${row.original._id}`}
+											className='table-view-icon action-icons'
 											onClick={() => {
-												editNews(row.original._id);
+												viewTimeDonation(row.original._id);
 											}}
 										/>
-										&nbsp;
+										&nbsp; &nbsp;
 										<BsFillTrashFill
 											className='table-delete-icon action-icons'
 											onClick={() => {
-												deleteNews(row.original._id);
+												deleteTimeDonation(row.original._id);
 											}}
 										/>
 									</td>
@@ -356,4 +270,6 @@ export default function News({ apiBaseUrl }) {
 			</div>
 		</div>
 	);
-}
+};
+
+export default TimeDonation;

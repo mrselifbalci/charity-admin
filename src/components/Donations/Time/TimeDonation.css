@@ -1,0 +1,27 @@
+.modal-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.modal-form {
+	display: flex;
+	flex-direction: column;
+	padding: 0px 5%;
+	color: black;
+}
+
+.modal-group-container {
+	padding: 0px;
+	background-color: var(--bg-grey);
+	border-radius: 6px;
+	margin: 20px 4px;
+	justify-content: space-around;
+}
+
+.modal-form-item {
+	background-color: var(--bg-grey);
+	border-radius: 6px;
+	padding: 15px 35px;
+	margin: 4px;
+	text-align: center;
+}
