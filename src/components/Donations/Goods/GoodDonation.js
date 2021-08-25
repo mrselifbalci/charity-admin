@@ -4,24 +4,25 @@ import { useTable, useSortBy, useGlobalFilter, usePagination } from 'react-table
 import { BsArrowUpDown } from 'react-icons/bs';
 import { BsFillEyeFill, BsFillTrashFill } from 'react-icons/bs';
 import Modal from 'react-modal';
-import { COLUMNS } from './TimeDonationData';
+import { COLUMNS } from './GoodDonationData';
 import '../../../styles/table.css';
-import './TimeDonation.css';
+import './GoodDonation.css';
 
 Modal.setAppElement('#root');
 
-const TimeDonation = ({ apiBaseUrl }) => {
+const GoodDonation = ({ apiBaseUrl }) => {
 	const [data, setData] = useState([]);
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [firstname, setFirstname] = useState('');
 	const [lastname, setLastname] = useState('');
 	const [email, setEmail] = useState('');
 	const [phone, setPhone] = useState('');
-	const [city, setCity] = useState('');
-	const [interestedIn, setInterestedIn] = useState('');
-	const [comment, setComment] = useState('');
+	const [address, setAddress] = useState('');
+	const [postcode, setPostcode] = useState('');
+	const [typeOfGoods, setTypeOfGoods] = useState('');
+	const [instructions, setInstructions] = useState('');
 
-	const viewTimeDonation = async (donationId) => {
+	const viewGoodDonation = async (donationId) => {
 		await axios
 			.get(`${apiBaseUrl}/donations/${donationId}`)
 			.then((res) => {
@@ -29,9 +30,10 @@ const TimeDonation = ({ apiBaseUrl }) => {
 				setLastname(res.data.data.userId.lastname);
 				setEmail(res.data.data.userId.email);
 				setPhone(res.data.data.phone);
-				setCity(res.data.data.city);
-				setInterestedIn(res.data.data.interested_in);
-				setComment(res.data.data.comments);
+				setAddress(res.data.data.address);
+				setPostcode(res.data.data.postcode);
+				setTypeOfGoods(res.data.data.type_of_goods);
+				setInstructions(res.data.data.instructions);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -39,7 +41,7 @@ const TimeDonation = ({ apiBaseUrl }) => {
 		setModalIsOpen(true);
 	};
 
-	const deleteTimeDonation = (donationId) => {
+	const deleteGoodDonation = (donationId) => {
 		axios
 			.delete(`${apiBaseUrl}/donations/${donationId}`)
 			.then((res) => {
@@ -52,7 +54,7 @@ const TimeDonation = ({ apiBaseUrl }) => {
 
 	useEffect(() => {
 		axios
-			.get(`${apiBaseUrl}/donations/type/time`)
+			.get(`${apiBaseUrl}/donations/type/good`)
 			.then((res) => {
 				setData(res.data.data);
 			})
@@ -62,11 +64,11 @@ const TimeDonation = ({ apiBaseUrl }) => {
 	}, [apiBaseUrl]);
 
 	const columns = useMemo(() => COLUMNS, []);
-	const timeDonations = useMemo(() => data, []);
+	const goodDonation = useMemo(() => data, []);
 
 	useTable({
 		columns: columns,
-		data: timeDonations,
+		data: goodDonation,
 	});
 
 	const {
@@ -139,18 +141,22 @@ const TimeDonation = ({ apiBaseUrl }) => {
 									<p>{email}</p>
 								</div>
 								<div className='modal-form-item'>
-									<h2>City</h2>
-									<p>{city}</p>
+									<h2>Address</h2>
+									<p>{address}</p>
 								</div>
 							</div>
 							<div className='modal-form-item'>
-								<h2>Interested In</h2>
-								<p>{interestedIn}</p>
+								<h2>Post Code</h2>
+								<p>{postcode}</p>
 							</div>
 							<div className='modal-group-container'>
 								<div className='modal-form-item'>
-									<h2>Comment</h2>
-									<p>{comment}</p>
+									<h2>Type of Goods</h2>
+									<p>{typeOfGoods}</p>
+								</div>
+								<div className='modal-form-item'>
+									<h2>Instructions to the Driver</h2>
+									<p>{instructions}</p>
 								</div>
 							</div>
 						</form>
@@ -158,7 +164,7 @@ const TimeDonation = ({ apiBaseUrl }) => {
 				</Modal>
 			</div>
 			<div className='table-container'>
-				<h1 className='table-title'>Time Donations</h1>
+				<h1 className='table-title'>Good Donations</h1>
 				<hr className='hr-table' />
 				<div className='table-show-search-wrapper'>
 					<div className='table-show-bar'>
@@ -224,14 +230,14 @@ const TimeDonation = ({ apiBaseUrl }) => {
 										<BsFillEyeFill
 											className='table-view-icon action-icons'
 											onClick={() => {
-												viewTimeDonation(row.original._id);
+												viewGoodDonation(row.original._id);
 											}}
 										/>
 										&nbsp; &nbsp;
 										<BsFillTrashFill
 											className='table-delete-icon action-icons'
 											onClick={() => {
-												deleteTimeDonation(row.original._id);
+												deleteGoodDonation(row.original._id);
 											}}
 										/>
 									</td>
@@ -268,4 +274,4 @@ const TimeDonation = ({ apiBaseUrl }) => {
 	);
 };
 
-export default TimeDonation;
+export default GoodDonation;

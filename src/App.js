@@ -16,6 +16,7 @@ import Signout from './components/Auth/Signout';
 import GiftCards from './components/Donations/GiftCard/GiftCards';
 import TimeDonation from './components/Donations/Time/TimeDonation';
 import GiftCardDetail from './components/Donations/GiftCard/GiftCardDeatail';
+import GoodDonation from './components/Donations/Goods/GoodDonation';
 
 function App() {
 	const [apiBaseUrl, setApiBaseUrl] = useState(
@@ -118,16 +119,9 @@ function App() {
 								/>
 								<Route
 									exact
-									path='/giftcard-donations'
+									path='/good-donations'
 									render={() => (
-										<GiftCards apiBaseUrl={apiBaseUrl} />
-									)}
-								/>
-								<Route 
-									exact
-									path='/giftcarddetails/:id'
-									render={() => (
-										<GiftCardDetail apiBaseUrl={apiBaseUrl}/>
+										<GoodDonation apiBaseUrl={apiBaseUrl} />
 									)}
 								/>
 							</div>
