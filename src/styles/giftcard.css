@@ -17,7 +17,7 @@
 }
 
 .giftcard-component-wrapper th, .giftcard-component-wrapper td {
-  padding: 5px;
+  padding: 7px;
 }
 
 .giftcard-component-wrapper tr:hover {
@@ -198,4 +198,22 @@
     padding-right: 10px;
     color: #fff;
     font-size: large;
+  }
+
+  .giftcard-details-edit-btn {
+    background-color: #216606;
+    border: none;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #fff;
+    font-size: large;
+    margin-left: 1%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
+
+  .giftcard-details-edit-icon {
+    margin-bottom: 3px;
   }

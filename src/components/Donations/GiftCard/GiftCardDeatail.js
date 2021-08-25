@@ -4,17 +4,21 @@ import { Link} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import '../../../styles/news.css'
 import { useHistory } from 'react-router-dom';
+import {FaEdit} from 'react-icons/fa'
+import { EditModal } from './Modals';
+
 
 export default function GiftCardDetail({apiBaseUrl}) {
     
     const { id } = useParams();
     const history = useHistory()
     const [giftcard,setGiftcard]=useState({})
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [param, setParam] = useState('');
  useEffect(() => {
      axios 
      .get(`${apiBaseUrl}/donations/${id}`)
      .then((res)=>{
-         console.log(res.data.data)
          setGiftcard(res.data.data)   
      })
      .catch((err) => {
@@ -23,6 +27,7 @@ export default function GiftCardDetail({apiBaseUrl}) {
  }, [])
     return (
         <div className="giftcard-details-container"> 
+        <EditModal apiBaseUrl={apiBaseUrl} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} id={param}/>
             {/* <div className='giftcard-details-info'>
             <div>
                 <p><strong>Name</strong></p>
@@ -87,6 +92,7 @@ export default function GiftCardDetail({apiBaseUrl}) {
             </div>
             <div className='giftcard-details-back-div'>
                 <button className='giftcard-details-back-btn' onClick={() => history.goBack()}>Back to Gift Cards</button>
+                <button className='giftcard-details-edit-btn' onClick={() => {setModalIsOpen(true); setParam(id)}}><FaEdit className='giftcard-details-edit-icon'/>Edit</button>
             </div>
         </div>
     )
