@@ -57,6 +57,7 @@ const GoodDonation = ({ apiBaseUrl }) => {
 			.get(`${apiBaseUrl}/donations/type/good`)
 			.then((res) => {
 				setData(res.data.data);
+				console.log(data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -97,6 +98,8 @@ const GoodDonation = ({ apiBaseUrl }) => {
 	);
 
 	const { globalFilter, pageIndex, pageSize } = state;
+
+	console.log(data);
 
 	return (
 		<div className='news-component-wrapper'>
@@ -226,6 +229,7 @@ const GoodDonation = ({ apiBaseUrl }) => {
 										);
 									})}
 									<td>{row.original.userId.email}</td>
+									{console.log(row.original.userId.email)}
 									<td className='table-action-icons-wrapper'>
 										<BsFillEyeFill
 											className='table-view-icon action-icons'
