@@ -7,6 +7,7 @@ import { BsQuestionSquare,BsInfoSquare,BsFillPlusSquareFill } from "react-icons/
 import {BsFillEyeFill,BsFillHouseDoorFill,BsFillStarFill,BsChatFill,BsFillPeopleFill,BsCardList,BsFilm,BsChevronRight,BsEnvelope } from "react-icons/bs";
 import {IoNotificationsOutline} from 'react-icons/io5';
 import '../../styles/header.css'
+import { Link } from 'react-router-dom';
  
 export default function Header({isLoggedIn,setIsLoggedIn,apiBaseUrl,url,token,userInfo}) {
 
@@ -114,10 +115,10 @@ export default function Header({isLoggedIn,setIsLoggedIn,apiBaseUrl,url,token,us
                        </div>
               </div>
               <div className={donationsClassname===false?"dropdown-closed":"dropdown-open"}>    
-                        <div className="dropdown-item"> <BsFillEyeFill/> <a href="/ambassadors"> Ambassadors</a></div>
-                        <div className="dropdown-item"> <BsFillEyeFill/> <a href="/goods-donations"> Goods Donations</a></div>
-                        <div className="dropdown-item"> <BsFillEyeFill/> <a href="/time-donations"> Time Donations</a></div>
-                        <div className="dropdown-item"> <BsFillEyeFill/> <a href="/giftcard-donations"> Gift Cards</a></div>
+                        <div className="dropdown-item"> <BsFillEyeFill/> <Link to="/ambassadors"> Ambassadors</Link></div>
+                        <div className="dropdown-item"> <BsFillEyeFill/> <Link to="/goods-donations"> Goods Donations</Link></div>
+                        <div className="dropdown-item"> <BsFillEyeFill/> <Link to="/time-donations"> Time Donations</Link></div>
+                        <div className="dropdown-item"> <BsFillEyeFill/> <Link to="/giftcard-donations"> Gift Cards</Link></div>
               </div>
               <div className="menu-item"><a href="/sliders"> <BsFillStarFill/> Sliders</a></div>
               <div className="menu-item"><a href="/users"> <BsFillPeopleFill/> Users</a></div>

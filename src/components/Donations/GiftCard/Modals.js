@@ -2,13 +2,11 @@ import React, {useState} from 'react'
 import Modal from 'react-modal';
 import axios from 'axios'
 import { useEffect } from 'react';
-import './modal.css'
 
 Modal.setAppElement('#root'); 
 
 
-export const EditModal = ({apiBaseUrl, modalIsOpen, setModalIsOpen, id}) => {
-    const [modalPost,setModalPost]=useState('')
+export const EditModal = ({apiBaseUrl, modalIsOpen, setModalIsOpen, id, setReload, reload}) => {
     const [firstname,setFirstname]=useState('')
     const [lastname,setLastname]=useState('')
     const [amount,setAmount]=useState('')
@@ -28,15 +26,16 @@ export const EditModal = ({apiBaseUrl, modalIsOpen, setModalIsOpen, id}) => {
             amount,
             type,
             comments,
-            cardType,
-            cardNumber,
-            expirationDate,
-            securityCode,
+            type_of_card:cardType,
+            card_number:cardNumber,
+            expiration_date:expirationDate,
+            security_code:securityCode,
             postcode
         }
         axios.put(`${apiBaseUrl}/donations/${id}`,updatedNews)
         .then(res=>{
-            window.location.reload()
+            setReload(!reload)
+			setModalIsOpen(false)
         })
         .catch(err=>{console.log(err)})
     }
@@ -45,8 +44,7 @@ export const EditModal = ({apiBaseUrl, modalIsOpen, setModalIsOpen, id}) => {
     const editGiftCard= async (id)=>{
        await  axios
         .get(`${apiBaseUrl}/donations/${id}`)
-        .then((res) => {  
-            setModalPost(res.data);
+        .then((res) => { 
             setFirstname(res.data.data.firstname)
             setLastname(res.data.data.lastname)
             setType(res.data.data.type)
@@ -234,7 +232,7 @@ export const EditModal = ({apiBaseUrl, modalIsOpen, setModalIsOpen, id}) => {
                     </div>
 					</div>
 					<div className="giftcard-form-submit-row">
-						<button className='giftcard-edit-submitButton' type="submit">Submit</button>
+						<button className='giftcard-edit-submitButton' type="submit">Update</button>
 					</div>
 				</form>
                 </div>

@@ -5,9 +5,8 @@ import {BsArrowUpDown } from "react-icons/bs";
 import { BsFillEyeFill,BsPencilSquare,BsFillTrashFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import {COLUMNS} from './GiftCardColumns'
-import '../../../styles/table.css'
-import '../../../styles/news.css' 
 import { EditModal } from './Modals';
+import '../../../styles/giftcard.css'
  
 
 
@@ -18,13 +17,14 @@ export default function GiftCards({apiBaseUrl}) {
     const [data,setData]=useState([])
     const [modalIsOpen, setModalIsOpen] = useState(false);  
     const [id, setId]=useState('')
+    const [reload, setReload] = useState(false)
 
    
     const deleteNews=(newsId)=>{
         axios
         .delete(`${apiBaseUrl}/donations/${newsId}`)
         .then((res) => {
-            window.location.reload()
+            setReload(!reload)
         })   
         .catch((err) => {
             console.log(err);
@@ -50,7 +50,7 @@ export default function GiftCards({apiBaseUrl}) {
 			.catch((err) => {
 				console.log(err);
 			});
-    }, [])
+    }, [reload])
 
     const columns = useMemo(() => COLUMNS,[])
     const news = useMemo(() => data,[])
@@ -87,8 +87,8 @@ export default function GiftCards({apiBaseUrl}) {
 
 
     return (
-    <div className="news-component-wrapper">
-        <EditModal apiBaseUrl={apiBaseUrl} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} id={id}/>
+    <div className="giftcard-component-wrapper">
+        <EditModal apiBaseUrl={apiBaseUrl} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} id={id} setReload={setReload} reload={reload}/>
         <div className="table-container">
             <h1 className="table-title">Gift Cards</h1>
             <hr className="hr-table"/>
@@ -142,7 +142,7 @@ export default function GiftCards({apiBaseUrl}) {
                                                 return <td  {...cell.getCellProps()}>{cell.render('Cell')}</td>
                                             })}
                                             <td className="table-action-icons-wrapper">
-                                                    <BsFillEyeFill to={`/newsdetails/${row.original._id}`} className="table-view-icon action-icons" />&nbsp; 
+                                                <Link to={`/giftcarddetails/${row.original._id}`}><BsFillEyeFill className="table-view-icon action-icons" /></Link>&nbsp; 
                                                 <BsPencilSquare className="table-edit-icon action-icons" onClick={()=>{setId(row.original._id)}}/>&nbsp; 
                                                 <BsFillTrashFill className="table-delete-icon action-icons" onClick={()=>{deleteNews(row.original._id)}}/>
                                             </td>
