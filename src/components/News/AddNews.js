@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import '../../styles/table.css'
 import '../../styles/news.css'  
+import CKEditorCopm from "./CKEditor";
 
 export default function AddNews({apiBaseUrl}) {
 
@@ -14,6 +15,7 @@ export default function AddNews({apiBaseUrl}) {
   const [quote, setQuote] = useState("");
   const [quoteAuthor, setQuoteAuthor] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [content, setContent] = useState('');
 
 
   
@@ -35,6 +37,7 @@ export default function AddNews({apiBaseUrl}) {
     formData.append("quoteAuthor", quoteAuthor);
     formData.append("altImage", "news-banner");
     formData.append("altQuote", "quote-author");
+    formData.append("content", content);
     
     
  
@@ -104,7 +107,7 @@ export default function AddNews({apiBaseUrl}) {
             <div className="add-news-main-column-two">
 
                     <label>Content</label>
-                    <input value="CK-EDITOR"/>
+                   <CKEditorCopm  setContent={setContent}/>
 
                  
                  <div>
