@@ -124,6 +124,20 @@ function App() {
 										<GoodDonation apiBaseUrl={apiBaseUrl} />
 									)}
 								/>
+								<Route
+									exact
+									path='/giftcard-donations'
+									render={() => (
+										<GiftCards apiBaseUrl={apiBaseUrl} />
+									)}
+								/>
+								<Route
+									exact
+									path='/giftcarddetails/:id'
+									render={() => (
+										<GiftCardDetail apiBaseUrl={apiBaseUrl} />
+									)}
+								/>
 							</div>
 						</Switch>
 					</div>
