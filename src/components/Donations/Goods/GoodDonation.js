@@ -20,6 +20,7 @@ const GoodDonation = ({ apiBaseUrl }) => {
 	const [address, setAddress] = useState('');
 	const [postcode, setPostcode] = useState('');
 	const [typeOfGoods, setTypeOfGoods] = useState('');
+	const [quantity, setQuantity] = useState('');
 	const [instructions, setInstructions] = useState('');
 
 	const viewGoodDonation = async (donationId) => {
@@ -33,6 +34,7 @@ const GoodDonation = ({ apiBaseUrl }) => {
 				setAddress(res.data.data.address);
 				setPostcode(res.data.data.postcode);
 				setTypeOfGoods(res.data.data.type_of_goods);
+				setQuantity(res.data.data.number_of_pieces);
 				setInstructions(res.data.data.instructions);
 			})
 			.catch((err) => {
@@ -152,6 +154,10 @@ const GoodDonation = ({ apiBaseUrl }) => {
 							<div className='modal-form-item'>
 								<h2 className='modal-form-item-title'>Type of Goods</h2>
 								<p className='modal-form-item-content'>{typeOfGoods}</p>
+							</div>
+							<div className='modal-form-item'>
+								<h2 className='modal-form-item-title'>Quantity</h2>
+								<p className='modal-form-item-content'>{quantity}</p>
 							</div>
 
 							<div className='modal-form-item'>

@@ -24,9 +24,15 @@ export const COLUMNS = [
 		Header: 'Post Code',
 		accessor: 'postcode',
 	},
+
 	{
 		Header: 'Type of Goods',
 		accessor: 'type_of_goods',
+	},
+
+	{
+		Header: 'Quantity',
+		accessor: 'number_of_pieces',
 	},
 
 	{
