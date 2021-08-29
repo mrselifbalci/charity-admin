@@ -17,6 +17,7 @@ import GiftCards from './components/Donations/GiftCard/GiftCards';
 import TimeDonation from './components/Donations/Time/TimeDonation';
 import GiftCardDetail from './components/Donations/GiftCard/GiftCardDeatail';
 import GoodDonation from './components/Donations/Goods/GoodDonation';
+import Ambassadors from './components/Donations/Ambassadors/Ambassadors';
 
 function App() {
 	const [apiBaseUrl, setApiBaseUrl] = useState(
@@ -112,6 +113,11 @@ function App() {
 								/>
 								<Route
 									exact
+									path='/ambassadors'
+									render={() => <Ambassadors apiBaseUrl={apiBaseUrl} />}
+								/>
+								<Route
+									exact
 									path='/time-donations'
 									render={() => (
 										<TimeDonation apiBaseUrl={apiBaseUrl} />
@@ -127,9 +133,7 @@ function App() {
 								<Route
 									exact
 									path='/giftcard-donations'
-									render={() => (
-										<GiftCards apiBaseUrl={apiBaseUrl} />
-									)}
+									render={() => <GiftCards apiBaseUrl={apiBaseUrl} />}
 								/>
 								<Route
 									exact
