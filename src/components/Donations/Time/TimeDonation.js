@@ -123,7 +123,7 @@ const TimeDonation = ({ apiBaseUrl }) => {
 						</p>
 						<form className='modal-form'>
 							<div className='modal-form-item'>
-								<h2>Name</h2>
+								<h2 className='modal-form-item-title'>Name</h2>
 								<p>
 									{firstname} {lastname}
 								</p>
@@ -131,26 +131,26 @@ const TimeDonation = ({ apiBaseUrl }) => {
 
 							<div className='modal-group-container'>
 								<div className='modal-form-item'>
-									<h2>Phone</h2>
-									<p>{phone}</p>
+									<h2 className='modal-form-item-title'>Phone</h2>
+									<p className='modal-form-item-content'>{phone}</p>
 								</div>
 								<div className='modal-form-item'>
-									<h2>Email</h2>
-									<p>{email}</p>
+									<h2 className='modal-form-item-title'>Email</h2>
+									<p className='modal-form-item-content'>{email}</p>
 								</div>
 								<div className='modal-form-item'>
-									<h2>City</h2>
-									<p>{city}</p>
+									<h2 className='modal-form-item-title'>City</h2>
+									<p className='modal-form-item-content'>{city}</p>
 								</div>
 							</div>
 							<div className='modal-form-item'>
-								<h2>Interested In</h2>
-								<p>{interestedIn}</p>
+								<h2 className='modal-form-item-title'>Interested In</h2>
+								<p className='modal-form-item-content'>{interestedIn}</p>
 							</div>
 							<div className='modal-group-container'>
 								<div className='modal-form-item'>
-									<h2>Comment</h2>
-									<p>{comment}</p>
+									<h2 className='modal-form-item-title'>Comment</h2>
+									<p className='modal-form-item-content'>{comment}</p>
 								</div>
 							</div>
 						</form>
