@@ -151,13 +151,19 @@ const GoodDonation = ({ apiBaseUrl }) => {
 								<h2 className='modal-form-item-title'>Address</h2>
 								<p className='modal-form-item-content'>{address}</p>
 							</div>
-							<div className='modal-form-item'>
-								<h2 className='modal-form-item-title'>Type of Goods</h2>
-								<p className='modal-form-item-content'>{typeOfGoods}</p>
-							</div>
-							<div className='modal-form-item'>
-								<h2 className='modal-form-item-title'>Quantity</h2>
-								<p className='modal-form-item-content'>{quantity}</p>
+							<div className='modal-group-container'>
+								<div className='modal-form-item'>
+									<h2 className='modal-form-item-title'>
+										Type of Goods
+									</h2>
+									<p className='modal-form-item-content'>
+										{typeOfGoods}
+									</p>
+								</div>
+								<div className='modal-form-item'>
+									<h2 className='modal-form-item-title'>Quantity</h2>
+									<p className='modal-form-item-content'>{quantity}</p>
+								</div>
 							</div>
 
 							<div className='modal-form-item'>
