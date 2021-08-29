@@ -163,7 +163,7 @@ const Ambassadors = ({ apiBaseUrl }) => {
 				</Modal>
 			</div>
 			<div className='table-container'>
-				<h1 className='table-title'>Good Donations</h1>
+				<h1 className='table-title'>Ambassadors</h1>
 				<hr className='hr-table' />
 				<div className='table-show-search-wrapper'>
 					<div className='table-show-bar'>

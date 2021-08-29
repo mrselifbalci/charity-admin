@@ -23,10 +23,40 @@ export const COLUMNS = [
 	{
 		Header: 'Reason to Join',
 		accessor: 'reason_to_join',
+		Cell: ({ row }) => {
+			return (
+				<>
+					{row.original.reason_to_join.length !== 0 ? (
+						<span>
+							{row.original.reason_to_join &&
+								row.original.reason_to_join.slice(0, 30)}
+							...
+						</span>
+					) : (
+						<span>-</span>
+					)}
+				</>
+			);
+		},
 	},
 	{
 		Header: 'Interested In',
 		accessor: 'interested_in',
+		Cell: ({ row }) => {
+			return (
+				<>
+					{row.original.interested_in.length !== 0 ? (
+						<span>
+							{row.original.interested_in &&
+								row.original.interested_in.slice(0, 30)}
+							...
+						</span>
+					) : (
+						<span>-</span>
+					)}
+				</>
+			);
+		},
 	},
 
 	{
@@ -35,7 +65,7 @@ export const COLUMNS = [
 		Cell: ({ row }) => {
 			return (
 				<>
-					{row.original.instructions.length !== 0 ? (
+					{row.original.comments.length !== 0 ? (
 						<span>
 							{row.original.comments && row.original.comments.slice(0, 30)}
 							...
