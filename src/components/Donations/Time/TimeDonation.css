@@ -21,7 +21,7 @@
 .modal-form-item {
 	background-color: var(--bg-grey);
 	border-radius: 6px;
-	padding: 15px 35px;
+	padding: 0px 35px;
 	margin: 4px;
 	text-align: center;
 }

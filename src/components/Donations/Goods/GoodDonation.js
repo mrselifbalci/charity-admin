@@ -125,38 +125,40 @@ const GoodDonation = ({ apiBaseUrl }) => {
 						</p>
 						<form className='modal-form'>
 							<div className='modal-form-item'>
-								<h2>Name</h2>
-								<p>
+								<h2 className='modal-form-item-title'>Name</h2>
+								<p className='modal-form-item-content'>
 									{firstname} {lastname}
 								</p>
 							</div>
 
 							<div className='modal-group-container'>
 								<div className='modal-form-item'>
-									<h2>Phone</h2>
-									<p>{phone}</p>
+									<h2 className='modal-form-item-title'>Phone</h2>
+									<p className='modal-form-item-content'>{phone}</p>
 								</div>
 								<div className='modal-form-item'>
-									<h2>Email</h2>
-									<p>{email}</p>
+									<h2 className='modal-form-item-title'>Email</h2>
+									<p className='modal-form-item-content'>{email}</p>
 								</div>
 								<div className='modal-form-item'>
-									<h2>Post Code</h2>
-									<p>{postcode}</p>
+									<h2 className='modal-form-item-title'>Post Code</h2>
+									<p className='modal-form-item-content'>{postcode}</p>
 								</div>
 							</div>
 							<div className='modal-form-item'>
-								<h2>Address</h2>
-								<p>{address}</p>
+								<h2 className='modal-form-item-title'>Address</h2>
+								<p className='modal-form-item-content'>{address}</p>
 							</div>
 							<div className='modal-form-item'>
-								<h2>Type of Goods</h2>
-								<p>{typeOfGoods}</p>
+								<h2 className='modal-form-item-title'>Type of Goods</h2>
+								<p className='modal-form-item-content'>{typeOfGoods}</p>
 							</div>
 
 							<div className='modal-form-item'>
-								<h2>Instructions to the Driver</h2>
-								<p>{instructions}</p>
+								<h2 className='modal-form-item-title'>
+									Instructions to the Driver
+								</h2>
+								<p className='modal-form-item-content'>{instructions}</p>
 							</div>
 						</form>
 					</div>
